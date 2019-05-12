@@ -7,8 +7,18 @@
   id="checkout-button-plan_F3BMYOA8oqXtWG"
   role="link"
 >
-  Checkout
+  TEST Checkout
 </button>
+
+<!-- Live Button! -->
+<button
+  style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
+  id="checkout-button-plan_F3BniqoWKkEScc"
+  role="link"
+>
+  Live Checkout (click here to pay)
+</button>
+
 
 <div id="error-message"></div>
 
@@ -27,6 +37,33 @@
       // tab between form submission and the redirect.
       successUrl: window.location.protocol + '//prova.energiaemobilitasostenibile.org/success',
       cancelUrl: window.location.protocol + '//prova.energiaemobilitasostenibile.org/canceled',
+    })
+    .then(function (result) {
+      if (result.error) {
+        // If `redirectToCheckout` fails due to a browser or network
+        // error, display the localized error message to your customer.
+        var displayError = document.getElementById('error-message');
+        displayError.textContent = result.error.message;
+      }
+    });
+  });
+</script>
+
+<script>
+  var stripe = Stripe('pk_live_JGqQsMsj90FCfe9rmpGoJwmk002dwohNL9');
+
+  var checkoutButton = document.getElementById('checkout-button-plan_F3BniqoWKkEScc');
+  checkoutButton.addEventListener('click', function () {
+    // When the customer clicks on the button, redirect
+    // them to Checkout.
+    stripe.redirectToCheckout({
+      items: [{plan: 'plan_F3BniqoWKkEScc', quantity: 1}],
+
+      // Note that it is not guaranteed your customers will be redirected to this
+      // URL *100%* of the time, it's possible that they could e.g. close the
+      // tab between form submission and the redirect.
+      successUrl: window.location.protocol + '//energiaemobilitasostenibile.org/success',
+      cancelUrl: window.location.protocol + '//energiaemobilitasostenibile.org/canceled',
     })
     .then(function (result) {
       if (result.error) {
