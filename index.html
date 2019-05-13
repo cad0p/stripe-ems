@@ -74,7 +74,21 @@
 
 
 <div class="yaqOZd IFuOkc"></div><div class="mYVXT"><div class="LS81yb VICjCf" tabindex="-1"><div class="hJDwNd-AhqUyc-uQSCkd purZT-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c JNdkSc"><div class="JNdkSc-SmKAyb"><div class="oKdM2c"><div id="h.p_wTMgm1aqN484" class="hJDwNd-AhqUyc-uQSCkd jXK9ad D2fZ2 OjCsFc wHaque"><div class="jXK9ad-SmKAyb"><div class="tyJCtd baZpAe"><div class="iwQgFb" role="presentation">
-<?php $quantity = 10 ?>      
+<?php $quantity = 10; ?>   
+	
+<!-- Load Stripe.js on your website. -->
+<script src="https://js.stripe.com/v3"></script>
+
+<!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
+<button
+  style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
+  id="checkout-button-sku_F3bNWSHnyfX71d"
+  role="link"
+>
+  Dona <?php echo $quantity ?>€ a EMS
+</button>
+
+	
 <form method="get">
 			<p>
 				<b>Seleziona quanto vuoi donare: </b>
@@ -91,17 +105,6 @@
         </div>
 </form> 
 
-<!-- Load Stripe.js on your website. -->
-<script src="https://js.stripe.com/v3"></script>
-
-<!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
-<button
-  style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
-  id="checkout-button-sku_F3bNWSHnyfX71d"
-  role="link"
->
-  Dona <?php echo $quantity ?>€ a EMS
-</button>
 
 <div id="error-message"></div>
 
