@@ -67,42 +67,6 @@
     });
   });
 </script>
-
-<!-- Donazione Singola -->
-<button
-  style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
-  id="checkout-button-sku_F3bNWSHnyfX71d"
-  role="link"
->
-  Dona ad EMS
-</button>
-
-<script>
-  var stripe = Stripe('pk_live_JGqQsMsj90FCfe9rmpGoJwmk002dwohNL9');
-
-  var checkoutButton = document.getElementById('checkout-button-sku_F3bNWSHnyfX71d');
-  checkoutButton.addEventListener('click', function () {
-    // When the customer clicks on the button, redirect
-    // them to Checkout.
-    stripe.redirectToCheckout({
-      items: [{sku: 'sku_F3bNWSHnyfX71d'}],
-
-      // Note that it is not guaranteed your customers will be redirected to this
-      // URL *100%* of the time, it's possible that they could e.g. close the
-      // tab between form submission and the redirect.
-      successUrl: window.location.protocol + '//www.energiaemobilitasostenibile.org/success',
-      cancelUrl: window.location.protocol + '//www.energiaemobilitasostenibile.org/canceled',
-    })
-    .then(function (result) {
-      if (result.error) {
-        // If `redirectToCheckout` fails due to a browser or network
-        // error, display the localized error message to your customer.
-        var displayError = document.getElementById('error-message');
-        displayError.textContent = result.error.message;
-      }
-    });
-  });
-</script>
       
       
       <div class="JNdkSc-SmKAyb"><div class="oKdM2c"><div id="h.p_wTMgm1aqN484" class="hJDwNd-AhqUyc-uQSCkd jXK9ad D2fZ2 OjCsFc wHaque"><div class="jXK9ad-SmKAyb"><div class="tyJCtd baZpAe"><div class="iwQgFb" role="presentation"></div></div></div></div></div></div></div></div></div></section></div><div class="Xpil1b"></div>
