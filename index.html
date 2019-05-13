@@ -74,7 +74,23 @@
 
 
 <div class="yaqOZd IFuOkc"></div><div class="mYVXT"><div class="LS81yb VICjCf" tabindex="-1"><div class="hJDwNd-AhqUyc-uQSCkd purZT-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c JNdkSc"><div class="JNdkSc-SmKAyb"><div class="oKdM2c"><div id="h.p_wTMgm1aqN484" class="hJDwNd-AhqUyc-uQSCkd jXK9ad D2fZ2 OjCsFc wHaque"><div class="jXK9ad-SmKAyb"><div class="tyJCtd baZpAe"><div class="iwQgFb" role="presentation">
-      
+<?php $quantity = 10 ?>      
+<form method="get">
+			<p>
+				<b>Seleziona quanto vuoi donare: </b>
+                <br>
+                 
+                <input type='int' name='quantity' min='10'>
+                 Euro
+
+                </pre>
+            </p>
+        </fieldset>
+        <div align='center'>
+            <input type="submit" name="submitDonationVars" value="Aggiorna il pulsante donazione" />
+        </div>
+</form> 
+
 <!-- Load Stripe.js on your website. -->
 <script src="https://js.stripe.com/v3"></script>
 
@@ -84,12 +100,13 @@
   id="checkout-button-sku_F3bNWSHnyfX71d"
   role="link"
 >
-  Checkout
+  Dona <?php echo $quantity ?>€ a EMS
 </button>
 
 <div id="error-message"></div>
 
 <script>
+  var quantity = <?php echo $quantity ?>;
   var stripe = Stripe('pk_live_JGqQsMsj90FCfe9rmpGoJwmk002dwohNL9');
 
   var checkoutButton = document.getElementById('checkout-button-sku_F3bNWSHnyfX71d');
@@ -97,7 +114,7 @@
     // When the customer clicks on the button, redirect
     // them to Checkout.
     stripe.redirectToCheckout({
-      items: [{sku: 'sku_F3bNWSHnyfX71d', quantity: 10}],
+      items: [{sku: 'sku_F3bNWSHnyfX71d', quantity: quantity}],
 
       // Note that it is not guaranteed your customers will be redirected to this
       // URL *100%* of the time, it's possible that they could e.g. close the
