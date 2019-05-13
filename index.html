@@ -73,6 +73,53 @@
       
 
 
+<section id="h.p_twOuT_itN480" class="yaqOZd WxWicb" style=""><div class="yaqOZd IFuOkc"></div><div class="mYVXT"><div class="LS81yb VICjCf" tabindex="-1"><div class="hJDwNd-AhqUyc-uQSCkd purZT-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c JNdkSc"><div class="JNdkSc-SmKAyb"><div class="oKdM2c"><div id="h.p_wTMgm1aqN484" class="hJDwNd-AhqUyc-uQSCkd jXK9ad D2fZ2 OjCsFc wHaque"><div class="jXK9ad-SmKAyb"><div class="tyJCtd baZpAe"><div class="iwQgFb" role="presentation">
+      
+<!-- Load Stripe.js on your website. -->
+<script src="https://js.stripe.com/v3"></script>
+
+<!-- Quota Associativa -->
+<button
+  style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
+  id="checkout-button-plan_F3BniqoWKkEScc"
+  role="link"
+>
+  Paga Quota Associativa Annuale (15€)
+</button>
+
+<div id="error-message"></div>
+
+<script>
+  var stripe = Stripe('pk_live_JGqQsMsj90FCfe9rmpGoJwmk002dwohNL9');
+
+  var checkoutButton = document.getElementById('checkout-button-plan_F3BniqoWKkEScc');
+  checkoutButton.addEventListener('click', function () {
+    // When the customer clicks on the button, redirect
+    // them to Checkout.
+    stripe.redirectToCheckout({
+      items: [{plan: 'plan_F3BniqoWKkEScc', quantity: 1}],
+
+      // Note that it is not guaranteed your customers will be redirected to this
+      // URL *100%* of the time, it's possible that they could e.g. close the
+      // tab between form submission and the redirect.
+      successUrl: window.location.protocol + '//www.energiaemobilitasostenibile.org/success',
+      cancelUrl: window.location.protocol + '//www.energiaemobilitasostenibile.org/canceled',
+    })
+    .then(function (result) {
+      if (result.error) {
+        // If `redirectToCheckout` fails due to a browser or network
+        // error, display the localized error message to your customer.
+        var displayError = document.getElementById('error-message');
+        displayError.textContent = result.error.message;
+      }
+    });
+  });
+</script>
+      
+      
+      </div></div></div></div></div></div></div></div></div></section></div><div class="Xpil1b"></div>
+
+
       <footer><section id="h.s_LrDWukiQx62Z" class="yaqOZd" style=""><div class="yaqOZd IFuOkc"></div><div class="mYVXT"><div class="LS81yb VICjCf" tabindex="-1"></div></div></section><section id="h.s_y6Kc_wdfQHkg" class="yaqOZd" style=""><div class="yaqOZd IFuOkc"></div><div class="mYVXT"><div class="LS81yb VICjCf" tabindex="-1"><div class="hJDwNd-AhqUyc-uQSCkd purZT-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c JNdkSc"><div class="JNdkSc-SmKAyb"><div class="oKdM2c"><div id="h.s_W5U_7-h8QHka" class="hJDwNd-AhqUyc-uQSCkd jXK9ad D2fZ2 OjCsFc wHaque GNzUNc"><div class="jXK9ad-SmKAyb"><div class="tyJCtd mGzaTb baZpAe"><small id="h.s_1Jz89UuYQHkd" class="zfr3Q TMjjoe" style="display: block;"><a class="dhtgD" href="https://www.google.com/url?q=https%3A%2F%2Fsites.google.com%2Fenergiaemobilitasostenibile.org%2Fwww%2Fdona-il-5x1000&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNHJY4lkJV0LGLmcDmBdTACckfNf0g" target="_blank"><strong>Dona il tuo 5x1000!</strong></a><strong> </strong>Inserisci il nostro Codice Fiscale nella dichiarazione dei redditi:  <strong>921 944 303 41</strong></small><small id="h.s_RaEjGKpcQaTZ" class="zfr3Q TMjjoe" style="display: block;"><br></small><small id="h.s_KDAnh4iOQadk" class="zfr3Q TMjjoe" style="display: block;">Mail di contatto: <a class="dhtgD" href="mailto:info@energiaemobilitasostenibile.org" target="_blank">info@energiaemobilitasostenibile.org</a></small></div></div></div></div></div></div></div></div></section></footer><footer class="BCtCv" jscontroller="HSKGsf" jsaction="rcuQ6b:WYd;" data-create-site-url="https://sites.google.com/new/?usp=viewer_footer"><div class="uByue"><div class="yYF4Mc"><div><div class="qmpcfe">Made with the new Google&nbsp;Sites<span class="uabEyd">, an effortless way to create beautiful&nbsp;sites.</span></div><div class="qIzFn"><div class="tT6kpe"><button class="f8sasc" jsaction="click:ksR11e;">Create a site</button></div><div class="CvWMXb" role="button" tabindex="0" jscontroller="WF0Kbf" data-abuse-proto="%.@.null,null,&quot;https://sites.google.com/energiaemobilitasostenibile.org/www/diventa-socio&quot;,null,null,[]
 ,[]
 ]
