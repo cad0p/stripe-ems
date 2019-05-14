@@ -122,7 +122,7 @@ $plan = $PLAN_ID[$frequency];
                  
                 <input type='number' name='quantity' min='10' value='<?php echo $quantity ?>'>
                  Euro<br>
-				<b>Seleziona la frequenza con cui vuoi donare: </b>
+				<b>Frequenza con cui vuoi donare: </b>
 				<select name="frequency">
                 	<option value="single" <?php if($frequency == "single") echo ' selected' ?> >Singola</option>
                     <option value="monthly" <?php if($frequency == "monthly") echo ' selected' ?> >Mensile</option>
