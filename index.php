@@ -62,9 +62,9 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
 
 
 	$PLAN_ID = array 
-	(   'single'   => 'sku_F3bNWSHnyfX71d'   ,
-		'monthly'  => 'plan_F3qcyeIhHvgEMb'   ,
-		'annually' => 'plan_F3qcK1A3GmLldP'
+	(   'single'   => 'sku_HEhFgUy2xhjjF2'   ,
+		'monthly'  => 'plan_HEhMWNisr6kbFW'   ,
+		'annually' => 'plan_HEhMsxohhfXJJo'
 	);
 
 
@@ -141,7 +141,7 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
 <div id="error-message"></div>
 
 <script>
-	var stripe = Stripe('pk_live_JGqQsMsj90FCfe9rmpGoJwmk002dwohNL9');
+	var stripe = Stripe('pk_test_Llnv3emOhx6kls4GSRDqLxVr009Mw1CZE9');
 
 	var checkoutButton = document.getElementById('checkout-button-<?php echo $memberPlan ?>');
 	checkoutButton.addEventListener('click', function () {
