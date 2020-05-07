@@ -36,7 +36,13 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
 								<div class="LS81yb VICjCf" tabindex="-1">
 									<div class="hJDwNd-AhqUyc-uQSCkd purZT-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c JNdkSc"><div class="JNdkSc-SmKAyb">
 										<div class="oKdM2c"><div id="h.p_wTMgm1aqN484" class="hJDwNd-AhqUyc-uQSCkd jXK9ad D2fZ2 OjCsFc wHaque"><div class="jXK9ad-SmKAyb"><div class="tyJCtd baZpAe"><div class="iwQgFb" role="presentation">
+	<?php
 
+	if (array_key_exists('email', $_REQUEST)) {
+		$email = $_REQUEST['email'];
+	}
+
+	?>
 	<!-- Load Stripe.js on your website. -->
 	<script src="https://js.stripe.com/v3"></script>
 
@@ -61,11 +67,13 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
     stripe.redirectToCheckout({
     	items: [{plan: 'plan_F3BniqoWKkEScc', quantity: 1}],
 
+    	<?php if($email != null) echo "customerEmail: '$email',"; ?>
+
       // Note that it is not guaranteed your customers will be redirected to this
       // URL *100%* of the time, it's possible that they could e.g. close the
       // tab between form submission and the redirect.
-      successUrl: window.location.protocol + '//www.energiaemobilitasostenibile.org/success',
-      cancelUrl: window.location.protocol + '//pay.energiaemobilitasostenibile.org/',
+		successUrl: window.location.protocol + '//www.energiaemobilitasostenibile.org/success',
+		cancelUrl: window.location.protocol + '//pay.energiaemobilitasostenibile.org/',
     })
     .then(function (result) {
     	if (result.error) {
