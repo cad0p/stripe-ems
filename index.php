@@ -158,7 +158,7 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
 <script>
 	var quantity = <?php echo $quantity ?>;
 	var plan = "<?php echo $plan ?>";
-	var stripe = Stripe('pk_live_JGqQsMsj90FCfe9rmpGoJwmk002dwohNL9');
+
 
 	var checkoutButton = document.getElementById('checkout-button-' + plan);
 	checkoutButton.addEventListener('click', function () {
