@@ -140,7 +140,13 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
 
 <form method="get">
 	<b>Seleziona quanto vuoi donare: </b>
-
+<?php
+	if ($email != null) {
+?>
+	<input type="hidden" name="email" value="<?php echo $email ?>">
+<?php
+	}
+?>
 	<input style='width: 5em;' type='number' name='quantity' min='10' value='<?php echo $quantity ?>'>
 	Euro<br>
 	<b>Frequenza con cui vuoi donare: </b>
@@ -166,6 +172,9 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
     // them to Checkout.
     stripe.redirectToCheckout({
     	items: [{<?php if($frequency == 'single') echo 'sku'; else echo 'plan'; ?>: plan, quantity: quantity}],
+
+    	
+    	<?php if($email != null) echo "customerEmail: '$email',"; ?>
 
       // Note that it is not guaranteed your customers will be redirected to this
       // URL *100%* of the time, it's possible that they could e.g. close the
