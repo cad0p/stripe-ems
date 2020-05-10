@@ -38,9 +38,27 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
 										<div class="oKdM2c"><div id="h.p_wTMgm1aqN484" class="hJDwNd-AhqUyc-uQSCkd jXK9ad D2fZ2 OjCsFc wHaque"><div class="jXK9ad-SmKAyb"><div class="tyJCtd baZpAe"><div class="iwQgFb" role="presentation">
 	<?php
 
+	$MEMBER_PLAN_ID = array 
+	(   'nazionale'	=> 	'plan_F3BniqoWKkEScc',
+		'parma'  	=> 	'plan_HFXblXc8D2SGeH',
+		'milano'	=> 	'plan_HFXdpvlSdpkcJo',
+		'roma'		=> 	'plan_HFXeRH6CSX83qn',
+		'trieste'	=> 	'plan_HFXe8hK8ugoeZU',
+		'palermo'	=> 	'plan_HFXfxmdHmS08Z4',
+	);
+
 	if (array_key_exists('email', $_REQUEST)) {
 		$email = $_REQUEST['email'];
 	}
+
+	if (array_key_exists('loc', $_REQUEST)) {
+		$loc = $_REQUEST['loc'];
+	}
+	else {
+		$loc = 'nazionale';
+	}
+
+	$memberPlan = $MEMBER_PLAN_ID[$loc];
 
 	?>
 	<!-- Load Stripe.js on your website. -->
@@ -49,7 +67,7 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
 	<!-- Quota Associativa -->
 	<button
 	style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
-	id="checkout-button-plan_F3BniqoWKkEScc"
+	id="checkout-button-<?php echo $memberPlan ?>"
 	role="link"
 	>
 	Paga Quota Associativa Annuale (15€)
@@ -60,12 +78,12 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
 <script>
 	var stripe = Stripe('pk_live_JGqQsMsj90FCfe9rmpGoJwmk002dwohNL9');
 
-	var checkoutButton = document.getElementById('checkout-button-plan_F3BniqoWKkEScc');
+	var checkoutButton = document.getElementById('checkout-button-<?php echo $memberPlan ?>');
 	checkoutButton.addEventListener('click', function () {
     // When the customer clicks on the button, redirect
     // them to Checkout.
     stripe.redirectToCheckout({
-    	items: [{plan: 'plan_F3BniqoWKkEScc', quantity: 1}],
+    	items: [{plan: '<?php echo $memberPlan ?>', quantity: 1}],
 
     	<?php if($email != null) echo "customerEmail: '$email',"; ?>
 
