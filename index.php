@@ -60,6 +60,18 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
 
 	$memberPlan = $MEMBER_PLAN_ID[$loc];
 
+	// these refer to the donation section
+	if(!(array_key_exists('quantity',$_REQUEST) && array_key_exists('frequency',$_REQUEST)))
+	{
+		$quantity = 10;
+		$frequency = "single";
+	}
+	else
+	{
+		$quantity = $_REQUEST['quantity'];
+		$frequency = $_REQUEST['frequency'];
+	}
+
 	?>
 	<!-- Load Stripe.js on your website. -->
 	<script src="https://js.stripe.com/v3"></script>
@@ -80,6 +92,22 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
 	if ($email != null) {
 ?>
 	<input type="hidden" name="email" value="<?php echo $email ?>">
+<?php
+	}
+?>
+
+<?php
+	if ($quantity != null) {
+?>
+	<input type="hidden" name="quantity" value="<?php echo $quantity ?>">
+<?php
+	}
+?>
+
+<?php
+	if ($frequency != null) {
+?>
+	<input type="hidden" name="frequency" value="<?php echo $frequency ?>">
 <?php
 	}
 ?>
@@ -146,16 +174,7 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
 		'annually' => 'plan_F3qcK1A3GmLldP'
 	);
 
-	if(!(array_key_exists('quantity',$_REQUEST) && array_key_exists('frequency',$_REQUEST)))
-	{
-		$quantity = 10;
-		$frequency = "single";
-	}
-	else
-	{
-		$quantity = $_REQUEST['quantity'];
-		$frequency = $_REQUEST['frequency'];
-	}
+	
 	$plan = $PLAN_ID[$frequency];
 
 
