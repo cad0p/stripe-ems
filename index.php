@@ -70,8 +70,32 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
 	id="checkout-button-<?php echo $memberPlan ?>"
 	role="link"
 	>
-	Paga Quota Associativa Annuale (15€)
+	Paga Quota Associativa Annuale EMS <?php echo ucwords($loc) ?> (15€)
 </button>
+
+
+<form method="get">
+
+<?php
+	if ($email != null) {
+?>
+	<input type="hidden" name="email" value="<?php echo $email ?>">
+<?php
+	}
+?>
+	<b>Seleziona la tua sede EMS: </b>
+	<select name="frequency">
+<?php
+		foreach ($MEMBER_PLAN_ID as $thisLoc) {
+			echo '<option value="'.$thisLoc.'"';
+			if ($loc == $thisLoc) echo ' selected';
+			echo ' >'.ucwords($loc).'</option>\n';
+		}
+?>
+	</select><br>
+	<button type='submit' >Aggiorna il pulsante iscrizione</button>
+</form> 
+
 
 <div id="error-message"></div>
 
@@ -162,6 +186,14 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
 	if ($email != null) {
 ?>
 	<input type="hidden" name="email" value="<?php echo $email ?>">
+<?php
+	}
+?>
+
+<?php
+	if ($loc != null) {
+?>
+	<input type="hidden" name="loc" value="<?php echo $loc ?>">
 <?php
 	}
 ?>
