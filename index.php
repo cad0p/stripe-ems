@@ -83,6 +83,7 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
 <?php
 	}
 ?>
+	<br>
 	<b>Seleziona la tua sede EMS: </b>
 	<select name="loc">
 <?php
