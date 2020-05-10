@@ -39,12 +39,12 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
 	<?php
 
 	$MEMBER_PLAN_ID = array 
-	(   'nazionale'	=> 	'plan_F3BniqoWKkEScc',
-		'parma'  	=> 	'plan_HFXblXc8D2SGeH',
-		'milano'	=> 	'plan_HFXdpvlSdpkcJo',
-		'roma'		=> 	'plan_HFXeRH6CSX83qn',
-		'trieste'	=> 	'plan_HFXe8hK8ugoeZU',
-		'palermo'	=> 	'plan_HFXfxmdHmS08Z4',
+	(   'nazionale'	=> 	'plan_F3BMYOA8oqXtWG',
+		'parma'  	=> 	'plan_HFYT6zJvJLMEei',
+		'milano'	=> 	'plan_HFYTZO9RwqrTwB',
+		'roma'		=> 	'plan_HFYUuATwEOY2ZJ',
+		'trieste'	=> 	'plan_HFYUQsbgI34zEC',
+		'palermo'	=> 	'plan_HFYUhvYTmRemEx',
 	);
 
 	if (array_key_exists('email', $_REQUEST)) {
