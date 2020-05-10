@@ -84,12 +84,12 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
 	}
 ?>
 	<b>Seleziona la tua sede EMS: </b>
-	<select name="frequency">
+	<select name="loc">
 <?php
-		foreach ($MEMBER_PLAN_ID as $thisLoc) {
+		foreach ($MEMBER_PLAN_ID as $thisLoc => $thisPlan) {
 			echo '<option value="'.$thisLoc.'"';
 			if ($loc == $thisLoc) echo ' selected';
-			echo ' >'.ucwords($loc).'</option>\n';
+			echo ' >'.ucwords($thisLoc).'</option>\n';
 		}
 ?>
 	</select><br>
