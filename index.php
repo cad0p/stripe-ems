@@ -51,7 +51,7 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
 		$email = $_REQUEST['email'];
 	}
 
-	if (array_key_exists('loc', $_REQUEST)) {
+	if (array_key_exists('loc', $_REQUEST) && array_key_exists($_REQUEST['loc'], $MEMBER_PLAN_ID)) {
 		$loc = $_REQUEST['loc'];
 	}
 	else {
@@ -60,8 +60,17 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
 
 	$memberPlan = $MEMBER_PLAN_ID[$loc];
 
+
+	$PLAN_ID = array 
+	(   'single'   => 'sku_F3bNWSHnyfX71d'   ,
+		'monthly'  => 'plan_F3qcyeIhHvgEMb'   ,
+		'annually' => 'plan_F3qcK1A3GmLldP'
+	);
+
+
 	// these refer to the donation section
-	if(!(array_key_exists('quantity',$_REQUEST) && array_key_exists('frequency',$_REQUEST)))
+	if(!(array_key_exists('quantity',$_REQUEST) && array_key_exists('frequency',$_REQUEST)) 
+		&& array_key_exists($_REQUEST['frequency'], $PLAN_ID))
 	{
 		$quantity = 10;
 		$frequency = "single";
@@ -71,6 +80,9 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
 		$quantity = $_REQUEST['quantity'];
 		$frequency = $_REQUEST['frequency'];
 	}
+
+
+	$plan = $PLAN_ID[$frequency];
 
 	?>
 	<!-- Load Stripe.js on your website. -->
@@ -166,20 +178,6 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
 
 
 <div class="yaqOZd IFuOkc"></div><div class="mYVXT"><div class="LS81yb VICjCf" tabindex="-1"><div class="hJDwNd-AhqUyc-uQSCkd purZT-AhqUyc-II5mzb pSzOP-AhqUyc-qWD73c JNdkSc"><div class="JNdkSc-SmKAyb"><div class="oKdM2c"><div id="h.p_wTMgm1aqN484" class="hJDwNd-AhqUyc-uQSCkd jXK9ad D2fZ2 OjCsFc wHaque"><div class="jXK9ad-SmKAyb"><div class="tyJCtd baZpAe"><div class="iwQgFb" role="presentation">
-	<?php 
-
-	$PLAN_ID = array 
-	(   'single'   => 'sku_F3bNWSHnyfX71d'   ,
-		'monthly'  => 'plan_F3qcyeIhHvgEMb'   ,
-		'annually' => 'plan_F3qcK1A3GmLldP'
-	);
-
-	
-	$plan = $PLAN_ID[$frequency];
-
-
-
-	?>   
 	
 	<!-- Load Stripe.js on your website. -->
 	<script src="https://js.stripe.com/v3"></script>
