@@ -70,7 +70,7 @@ var c=function(){this.l=""};c.prototype.toString=function(){return"SafeStyle{"+t
 
 	// these refer to the donation section
 	if(!(array_key_exists('quantity',$_REQUEST) && array_key_exists('frequency',$_REQUEST)) 
-		&& array_key_exists($_REQUEST['frequency'], $PLAN_ID))
+		|| !array_key_exists($_REQUEST['frequency'], $PLAN_ID))
 	{
 		$quantity = 10;
 		$frequency = "single";
