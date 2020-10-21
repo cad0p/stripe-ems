@@ -154,6 +154,8 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
   });
 </script>
 
+<br><br><br><br>
+
 
 <!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
 	<button
