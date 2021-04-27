@@ -74,13 +74,15 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 	<!-- Load Stripe.js on your website. -->
 	<script src="https://js.stripe.com/v3"></script>
 
+	<br><br><br><br><br><br>
+
 	<!-- Quota Associativa -->
 	<button
 	style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
 	id="checkout-button-<?php echo $memberPlan ?>"
 	role="link"
 	>
-	Paga Quota Associativa Annuale EMS <?php echo ucwords($loc) ?> (15€)
+	Paga Quota Associativa Annuale EMS <?php echo ucwords($loc) ?>
 </button>
 
 
