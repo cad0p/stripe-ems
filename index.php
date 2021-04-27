@@ -24,12 +24,13 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 	<?php
 
 	$MEMBER_PLAN_ID = array 
-	(   'nazionale'	=> 	'plan_F3BniqoWKkEScc',
-		'parma'  	=> 	'plan_HFXblXc8D2SGeH',
-		'milano'	=> 	'plan_HFXdpvlSdpkcJo',
-		'roma'		=> 	'plan_HFXeRH6CSX83qn',
-		'trieste'	=> 	'plan_HFXe8hK8ugoeZU',
-		'palermo'	=> 	'plan_HFXfxmdHmS08Z4',
+	(   'nazionale'			=> 	'plan_F3BniqoWKkEScc',
+		'parma'  			=> 	'plan_HFXblXc8D2SGeH',
+		'milano'			=> 	'plan_HFXdpvlSdpkcJo',
+		'milano - polimi'	=> 	'price_1IkxJrEw6dN3jEAROFNFh9pu',
+		'roma'				=> 	'plan_HFXeRH6CSX83qn',
+		'trieste'			=> 	'plan_HFXe8hK8ugoeZU',
+		'palermo'			=> 	'plan_HFXfxmdHmS08Z4',
 	);
 
 	if (array_key_exists('email', $_REQUEST)) {
