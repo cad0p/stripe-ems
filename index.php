@@ -21,7 +21,6 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 </head>
 
 <body>
-	<p style="text-align:center">
 	<?php
 
 	$MEMBER_PLAN_ID = array 
@@ -240,5 +239,4 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
     });
   });
 </script>
-</p>
 </body>
