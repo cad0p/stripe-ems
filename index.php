@@ -31,7 +31,8 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 		'roma'				=> 	'plan_HFXeRH6CSX83qn',
 		'trieste'			=> 	'plan_HFXe8hK8ugoeZU',
 		'palermo'			=> 	'plan_HFXfxmdHmS08Z4',
-		'torino'			=>	'price_1ImLThEw6dN3jEAR1IOFOhqd'
+		'torino'			=>	'price_1ImLThEw6dN3jEAR1IOFOhqd',
+		'napoli'			=>	'price_1IuPEBEw6dN3jEAR4LghbiqU'
 	);
 
 	if (array_key_exists('email', $_REQUEST)) {
