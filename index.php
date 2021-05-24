@@ -12,27 +12,56 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 }
 ?>
 
-<!DOCTYPE html><html lang="en-US" itemscope itemtype="http://schema.org/WebPage">
+<!DOCTYPE html>
+<html lang="en-US" itemscope itemtype="http://schema.org/WebPage">
 
 <head>
-	<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="referrer" content="strict-origin-when-cross-origin"><link rel="icon" href="https://lh3.googleusercontent.com/NeifT3yfzkgb4ROmUbFpwUAMbhUNpyR5Yt2LDkotmAQwy5J1MWlsRFt-Vo9WdQceyUqWZpMYNnO3iwpXcDkwImancQQxAndP"/><meta property="og:type" content="website"/><meta property="og:title" content="Dona o Diventa Socio - EMS - Energia e Mobilita Sostenibile"/><meta itemprop="url" property="og:url" content="https://pay.energiaemobilitasostenibile.org/"/><meta itemprop="thumbnailUrl" content="https://lh3.googleusercontent.com/NeifT3yfzkgb4ROmUbFpwUAMbhUNpyR5Yt2LDkotmAQwy5J1MWlsRFt-Vo9WdQceyUqWZpMYNnO3iwpXcDkwImancQQxAndP"/><meta itemprop="image" content="https://lh3.googleusercontent.com/NeifT3yfzkgb4ROmUbFpwUAMbhUNpyR5Yt2LDkotmAQwy5J1MWlsRFt-Vo9WdQceyUqWZpMYNnO3iwpXcDkwImancQQxAndP"/><meta name="KEYWORDS" content="socio, member, association, associazione studentesca, ems, mobilita sostenibile, energia rinnovabile, auto elettriche, pompe di calore, pannelli solari, pannelli fotovoltaici, dona ems, diventa socio ems"><meta name="DESCRIPTION" content="Supporta studenti appassionati di auto elettriche ed energie rinnovabili, o diventa socio e partecipa al cambiamento!">
-	<title itemprop="name">Dona o Diventa Socio - EMS - Energia e Mobilita Sostenibile</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <link rel="icon" href="https://lh3.googleusercontent.com/NeifT3yfzkgb4ROmUbFpwUAMbhUNpyR5Yt2LDkotmAQwy5J1MWlsRFt-Vo9WdQceyUqWZpMYNnO3iwpXcDkwImancQQxAndP" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Dona o Diventa Socio - EMS - Energia e Mobilita Sostenibile" />
+    <meta itemprop="url" property="og:url" content="https://pay.energiaemobilitasostenibile.org/" />
+    <meta itemprop="thumbnailUrl" content="https://lh3.googleusercontent.com/NeifT3yfzkgb4ROmUbFpwUAMbhUNpyR5Yt2LDkotmAQwy5J1MWlsRFt-Vo9WdQceyUqWZpMYNnO3iwpXcDkwImancQQxAndP" />
+    <meta itemprop="image" content="https://lh3.googleusercontent.com/NeifT3yfzkgb4ROmUbFpwUAMbhUNpyR5Yt2LDkotmAQwy5J1MWlsRFt-Vo9WdQceyUqWZpMYNnO3iwpXcDkwImancQQxAndP" />
+    <meta name="KEYWORDS" content="socio, member, association, associazione studentesca, ems, mobilita sostenibile, energia rinnovabile, auto elettriche, pompe di calore, pannelli solari, pannelli fotovoltaici, dona ems, diventa socio ems">
+    <meta name="DESCRIPTION" content="Supporta studenti appassionati di auto elettriche ed energie rinnovabili, o diventa socio e partecipa al cambiamento!">
+    <title itemprop="name">Dona o Diventa Socio - EMS - Energia e Mobilita Sostenibile</title>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+	
+	<!-- Load Stripe.js on your website. -->
+	<script src="https://js.stripe.com/v3"></script>
 </head>
 
 <body>
-	<?php
 
-	$MEMBER_PLAN_ID = array 
-	(   'nazionale'			=> 	'plan_F3BniqoWKkEScc',
-		'parma'  			=> 	'plan_HFXblXc8D2SGeH',
-		'milano'			=> 	'plan_HFXdpvlSdpkcJo',
+
+    <div class="container mt-5">
+        <div class="jumbotron p-4" style="background-color:#0b8043">
+            <h1 class="text-light">Dona o Diventa Socio - EMS - Energia e Mobilita Sostenibile</h1>
+
+			<div class="row">
+
+				<div class="col-12 col-sm-4">
+
+				<?php
+                error_reporting(E_ALL ^ E_NOTICE);
+				
+
+				$MEMBER_PLAN_ID = array 
+	(   
+    'nazionale'			  => 	'plan_F3BniqoWKkEScc',
+		'parma'  			    => 	'plan_HFXblXc8D2SGeH',
+		'milano'          => 	'plan_HFXdpvlSdpkcJo',
 		'milano - polimi'	=> 	'price_1IkxJrEw6dN3jEAROFNFh9pu',
-		'roma'				=> 	'plan_HFXeRH6CSX83qn',
-		'trieste'			=> 	'plan_HFXe8hK8ugoeZU',
-		'palermo'			=> 	'plan_HFXfxmdHmS08Z4',
-		'torino'			=>	'price_1ImLThEw6dN3jEAR1IOFOhqd',
-		'napoli'			=>	'price_1IuPEBEw6dN3jEAR4LghbiqU'
+		'roma'				    => 	'plan_HFXeRH6CSX83qn',
+		'trieste'			    => 	'plan_HFXe8hK8ugoeZU',
+		'palermo'			    => 	'plan_HFXfxmdHmS08Z4',
+		'torino'          =>	'price_1ImLThEw6dN3jEAR1IOFOhqd',
+		'napoli'			    =>	'price_1IuPEBEw6dN3jEAR4LghbiqU'
 	);
 
 	if (array_key_exists('email', $_REQUEST)) {
@@ -50,7 +79,8 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 
 
 	$PLAN_ID = array 
-	(   'single'   => 'sku_F3bNWSHnyfX71d'   ,
+	(   
+    'single'   => 'sku_F3bNWSHnyfX71d'   ,
 		'monthly'  => 'plan_F3qcyeIhHvgEMb'   ,
 		'annually' => 'plan_F3qcK1A3GmLldP'
 	);
@@ -76,19 +106,13 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 	<!-- Load Stripe.js on your website. -->
 	<script src="https://js.stripe.com/v3"></script>
 
-	<br><br><br><br><br><br>
-
 	<!-- Quota Associativa -->
-	<button
-	style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
-	id="checkout-button-<?php echo $memberPlan ?>"
-	role="link"
-	>
-	Paga Quota Associativa Annuale EMS <?php echo ucwords($loc) ?>
-</button>
+	<div> <button class="btn btn-dark mt-2 mb-3" id="checkout-button-<?php echo $memberPlan ?>" role="link">
+								Paga Quota Associativa Annuale EMS <?php echo ucwords($loc) ?>
+							</button> </div>
 
 
-<form method="get">
+<form method="get" class="form-group justify-content-center">
 
 <?php
 	if ($email != null) {
@@ -113,18 +137,20 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 <?php
 	}
 ?>
-	<br>
-	<b>Seleziona la tua sede EMS: </b>
-	<select name="loc">
-<?php
-		foreach ($MEMBER_PLAN_ID as $thisLoc => $thisPlan) {
-			echo '<option value="'.$thisLoc.'"';
-			if ($loc == $thisLoc) echo ' selected';
-			echo ' >'.ucwords($thisLoc).'</option>\n';
-		}
-?>
-	</select><br>
-	<button type='submit' >Aggiorna il pulsante iscrizione</button>
+
+	<div> 
+						<div class="mb-2 text-light"><b>Seleziona la tua sede EMS: </b></div>
+						<select class="form-select text-center" name="loc">
+							<?php
+							foreach ($MEMBER_PLAN_ID as $thisLoc => $thisPlan) {
+								echo '<option value="' . $thisLoc . '"';
+								if ($loc == $thisLoc) echo ' selected';
+								echo '>' . ucwords($thisLoc) . '</option>\n';
+							}
+							?>
+						</select>
+						<button class="mt-2 mb-3 btn btn-dark" type='submit'> Aggiorna il pulsante iscrizione </button>
+					</div>
 </form> 
 
 
@@ -159,57 +185,59 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
   });
 </script>
 
-<br><br><br><br>
-
-
 <!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
-	<button
-	style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
-	id="checkout-button-<?php echo $plan ?>"
-	role="link"
-	>
-	Dona <?php echo $quantity ?>€ a EMS
-	<?php
-	if ($frequency == 'single') echo '';
-	else
-		if ($frequency == 'monthly') echo 'Mensilmente';
-	else echo 'Annualmente';
-	?>
+<button class="btn btn-dark mt-3" id="checkout-button-<?php echo $plan ?>" role="link">
+     Dona <?php echo $quantity ?>€ a EMS
+     <?php
+      if ($frequency == 'single') echo '';
+      else if ($frequency == 'monthly') echo 'Mensilmente';
+       else echo 'Annualmente';
+       ?>
 </button>
 
-
 <form method="get">
-	<b>Seleziona quanto vuoi donare: </b>
-<?php
-	if ($email != null) {
-?>
-	<input type="hidden" name="email" value="<?php echo $email ?>">
-<?php
-	}
-?>
+  <div class="my-3 text-light"><b>Seleziona quanto vuoi donare: (EUR)</b></div>
 
-<?php
-	if ($loc != null) {
-?>
-	<input type="hidden" name="loc" value="<?php echo $loc ?>">
-<?php
-	}
-?>
-	<input style='width: 5em;' type='number' name='quantity' min='10' value='<?php echo $quantity ?>'>
-	Euro<br>
-	<b>Frequenza con cui vuoi donare: </b>
-	<select name="frequency">
-		<option value="single" <?php if($frequency == "single") echo ' selected' ?> >Singola</option>
-		<option value="monthly" <?php if($frequency == "monthly") echo ' selected' ?> >Mensile</option>
-		<option value="annually" <?php if($frequency == "annually") echo ' selected' ?> >Annuale</option>
-	</select><br>
-	<button type='submit' >Aggiorna il pulsante donazione</button>
-</form> 
+  <div class="mt-3">
+    <?php
+    if ($email != null) {
+    ?>
+    <input type="hidden" name="email" value="<?php echo $email ?>">
+    <?php
+    }
+    ?>
+
+    <?php
+    if ($loc != null) {
+    ?>
+    <input type="hidden" name="loc" value="<?php echo $loc ?>">
+    <?php
+    }
+    ?>
+  </div>
+
+  <input class="form-control" type='number' name='quantity' min='10' step="0.1" value='<?php echo $quantity ?>'>
+
+  <div class="my-3 text-light"><b>Frequenza con cui vuoi donare: </b></div>
+  <select class="form-select" name="frequency">
+    <option value="single" <?php if ($frequency == "single") echo ' selected' ?>>Singola</option>
+    <option value="monthly" <?php if ($frequency == "monthly") echo ' selected' ?>>Mensile</option>
+    <option value="annually" <?php if ($frequency == "annually") echo ' selected' ?>>Annuale</option>
+  </select>
+
+  <button class="btn btn-dark my-3" type='submit'>Aggiorna il pulsante donazione</button>
+                  </form>
 
 
-<div id="error-message"></div>
+				<div id="error-message"></div>
 
-<script>
+			</div> <!-- ./end col-->
+		</div> <!-- ./end row -->
+
+	</div>
+</div>
+
+    <script>
 	var quantity = <?php echo $quantity ?>;
 	var plan = "<?php echo $plan ?>";
 
