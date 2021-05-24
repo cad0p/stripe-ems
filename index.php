@@ -29,8 +29,8 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
     <meta name="KEYWORDS" content="socio, member, association, associazione studentesca, ems, mobilita sostenibile, energia rinnovabile, auto elettriche, pompe di calore, pannelli solari, pannelli fotovoltaici, dona ems, diventa socio ems">
     <meta name="DESCRIPTION" content="Supporta studenti appassionati di auto elettriche ed energie rinnovabili, o diventa socio e partecipa al cambiamento!">
     <title itemprop="name">Dona o Diventa Socio - EMS - Energia e Mobilita Sostenibile</title>
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
 	
 	<!-- Load Stripe.js on your website. -->
 	<script src="https://js.stripe.com/v3"></script>
