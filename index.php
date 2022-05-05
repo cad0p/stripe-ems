@@ -53,14 +53,14 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 
 				$MEMBER_PLAN_ID = array 
 	(   
-    		'nazionale'				=> 	'plan_F3BniqoWKkEScc',
-		'parma'  			    	=> 	'plan_HFXblXc8D2SGeH',
-		'milano'          			=> 	'plan_HFXdpvlSdpkcJo',
-		'milano - polimi'			=> 	'price_1IkxJrEw6dN3jEAROFNFh9pu',
-		'roma'				    	=> 	'plan_HFXeRH6CSX83qn',
+    		'nazionale'				=> 	'price_1KtwnaEw6dN3jEARjHqTkRaF',
+		'parma'  			    	=> 	'price_1KtwnHEw6dN3jEARPebkvbU2',
+		'milano'          			=> 	'price_1KtwmzEw6dN3jEARVvwUYiNM',
+		'milano - polimi'			=> 	'price_1KtwlkEw6dN3jEAR1w7yKRAU',
+		'roma'				    	=> 	'price_1KtwmcEw6dN3jEAROBJcqinw',
 		'trieste'			    	=> 	'price_1Ks0osEw6dN3jEARlaIwQJzs',
-		'palermo'			    	=> 	'plan_HFXfxmdHmS08Z4',
-		'torino'          			=>	'price_1ImLThEw6dN3jEAR1IOFOhqd',
+		'palermo'			    	=> 	'price_1KtwmHEw6dN3jEARL8myfzyN',
+		'torino'          			=>	'price_1KtwlLEw6dN3jEARDP0Q8P4O',
 		'napoli'			    	=>	'price_1KsXvcEw6dN3jEARPiSyED7J'
 	);
 
