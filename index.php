@@ -109,7 +109,7 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 	);
 
 
-	if (array_key_exists('intent', $_REQUEST) && array_key_exists($_REQUEST['intent'], $INTENTS)) {
+	if (array_key_exists('intent', $_REQUEST) && in_array($_REQUEST['intent'], $INTENTS)) {
 		$intent = $_REQUEST['intent'];
 	}
 
