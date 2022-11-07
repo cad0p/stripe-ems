@@ -47,7 +47,7 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 
 				<div class="col-12 col-sm-4">
 
-				<?php
+<?php
                 error_reporting(E_ALL ^ E_NOTICE);
 				
 
@@ -87,11 +87,11 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 
 
 	// these refer to the donation section
-	if(!(array_key_exists('quantity',$_REQUEST) && array_key_exists('frequency',$_REQUEST)) 
+	if(!(array_key_exists('quantity', $_REQUEST) && array_key_exists('frequency', $_REQUEST)) 
 		|| !array_key_exists($_REQUEST['frequency'], $PLAN_ID))
 	{
 		$quantity = 10;
-		$frequency = "single";
+		$frequency = 'single';
 	}
 	else
 	{
@@ -102,170 +102,176 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 
 	$plan = $PLAN_ID[$frequency];
 
-	?>
+	// intents determine which part of the website to show based on the intent
+	$INTENTS = array
+	(
+		'membership',
+	);
+
+
+	if (array_key_exists('intent', $_REQUEST) && array_key_exists($_REQUEST['intent'], $INTENTS)) {
+		$intent = $_REQUEST['intent'];
+	}
+
+?>
 	<!-- Load Stripe.js on your website. -->
 	<script src="https://js.stripe.com/v3"></script>
-
-	<!-- Quota Associativa -->
-	<div> <button class="btn btn-dark mt-2 mb-3" id="checkout-button-<?php echo $memberPlan ?>" role="link">
-								Paga Quota Associativa Annuale EMS <?php echo ucwords($loc) ?>
-							</button> </div>
-
-
-<form method="get" class="form-group justify-content-center">
-
 <?php
-	if ($email != null) {
+	if ($intent == 'membership') {
 ?>
-	<input type="hidden" name="email" value="<?php echo $email ?>">
+		<!-- Quota Associativa -->
+		<div> <button class="btn btn-dark mt-2 mb-3" id="checkout-button-<?php echo $memberPlan ?>" role="link">
+									Paga Quota Associativa Annuale EMS <?php echo ucwords($loc) ?>
+								</button> </div>
+
+
+		<form method="get" class="form-group justify-content-center">
+
 <?php
+		if ($email != null) {
+?>
+			<input type="hidden" name="email" value="<?php echo $email ?>">
+<?php
+		}
+?>
+
+<?php
+		if ($quantity != null) {
+?>
+			<input type="hidden" name="quantity" value="<?php echo $quantity ?>">
+<?php
+		}
+?>
+
+<?php
+		if ($frequency != null) {
+?>
+			<input type="hidden" name="frequency" value="<?php echo $frequency ?>">
+<?php
+		}
+?>
+		</form>
+
+
+		<div id="error-message"></div>
+
+		<script>
+			var stripe = Stripe('pk_live_JGqQsMsj90FCfe9rmpGoJwmk002dwohNL9');
+
+			var checkoutButton = document.getElementById('checkout-button-<?php echo $memberPlan ?>');
+			checkoutButton.addEventListener('click', function () {
+			// When the customer clicks on the button, redirect
+			// them to Checkout.
+			stripe.redirectToCheckout({
+				items: [{plan: '<?php echo $memberPlan ?>', quantity: 1}],
+
+				<?php if($email != null) echo "customerEmail: '$email',"; ?>
+
+			// Note that it is not guaranteed your customers will be redirected to this
+			// URL *100%* of the time, it's possible that they could e.g. close the
+			// tab between form submission and the redirect.
+				successUrl: window.location.protocol + '//www.energiaemobilitasostenibile.org/success',
+				cancelUrl: window.location.protocol + '//pay.energiaemobilitasostenibile.org/',
+			})
+			.then(function (result) {
+				if (result.error) {
+				// If `redirectToCheckout` fails due to a browser or network
+				// error, display the localized error message to your customer.
+				var displayError = document.getElementById('error-message');
+				displayError.textContent = result.error.message;
+			}
+			});
+		});
+		</script>
+<?php 
 	}
+	else if ($intent == null) {
 ?>
 
-<?php
-	if ($quantity != null) {
-?>
-	<input type="hidden" name="quantity" value="<?php echo $quantity ?>">
-<?php
-	}
-?>
+	<!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
+	<button class="btn btn-dark mt-3" id="checkout-button-<?php echo $plan ?>" role="link">
+		Dona <?php echo $quantity ?>€ a EMS
+		<?php
+		if ($frequency == 'single') echo '';
+		else if ($frequency == 'monthly') echo 'Mensilmente';
+		else echo 'Annualmente';
+		?>
+	</button>
 
-<?php
-	if ($frequency != null) {
-?>
-	<input type="hidden" name="frequency" value="<?php echo $frequency ?>">
-<?php
-	}
-?>
+	<form method="get">
+	<div class="my-3 text-light"><b>Seleziona quanto vuoi donare: (EUR)</b></div>
 
-	<div> 
-						<div class="mb-2 text-light"><b>Seleziona la tua sede EMS: </b></div>
-						<select class="form-select text-center" name="loc">
-							<?php
-							foreach ($MEMBER_PLAN_ID as $thisLoc => $thisPlan) {
-								echo '<option value="' . $thisLoc . '"';
-								if ($loc == $thisLoc) echo ' selected';
-								echo '>' . ucwords($thisLoc) . '</option>\n';
-							}
-							?>
-						</select>
-						<button class="mt-2 mb-3 btn btn-dark" type='submit'> Aggiorna il pulsante iscrizione </button>
-					</div>
-</form> 
+	<div class="mt-3">
+		<?php
+		if ($email != null) {
+		?>
+		<input type="hidden" name="email" value="<?php echo $email ?>">
+		<?php
+		}
+		?>
 
-
-<div id="error-message"></div>
-
-<script>
-	var stripe = Stripe('pk_live_JGqQsMsj90FCfe9rmpGoJwmk002dwohNL9');
-
-	var checkoutButton = document.getElementById('checkout-button-<?php echo $memberPlan ?>');
-	checkoutButton.addEventListener('click', function () {
-    // When the customer clicks on the button, redirect
-    // them to Checkout.
-    stripe.redirectToCheckout({
-    	items: [{plan: '<?php echo $memberPlan ?>', quantity: 1}],
-
-    	<?php if($email != null) echo "customerEmail: '$email',"; ?>
-
-      // Note that it is not guaranteed your customers will be redirected to this
-      // URL *100%* of the time, it's possible that they could e.g. close the
-      // tab between form submission and the redirect.
-		successUrl: window.location.protocol + '//www.energiaemobilitasostenibile.org/success',
-		cancelUrl: window.location.protocol + '//pay.energiaemobilitasostenibile.org/',
-    })
-    .then(function (result) {
-    	if (result.error) {
-        // If `redirectToCheckout` fails due to a browser or network
-        // error, display the localized error message to your customer.
-        var displayError = document.getElementById('error-message');
-        displayError.textContent = result.error.message;
-      }
-    });
-  });
-</script>
-
-<!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
-<button class="btn btn-dark mt-3" id="checkout-button-<?php echo $plan ?>" role="link">
-     Dona <?php echo $quantity ?>€ a EMS
-     <?php
-      if ($frequency == 'single') echo '';
-      else if ($frequency == 'monthly') echo 'Mensilmente';
-       else echo 'Annualmente';
-       ?>
-</button>
-
-<form method="get">
-  <div class="my-3 text-light"><b>Seleziona quanto vuoi donare: (EUR)</b></div>
-
-  <div class="mt-3">
-    <?php
-    if ($email != null) {
-    ?>
-    <input type="hidden" name="email" value="<?php echo $email ?>">
-    <?php
-    }
-    ?>
-
-    <?php
-    if ($loc != null) {
-    ?>
-    <input type="hidden" name="loc" value="<?php echo $loc ?>">
-    <?php
-    }
-    ?>
-  </div>
-
-  <input class="form-control" type='number' name='quantity' min='10' step="0.1" value='<?php echo $quantity ?>'>
-
-  <div class="my-3 text-light"><b>Frequenza con cui vuoi donare: </b></div>
-  <select class="form-select" name="frequency">
-    <option value="single" <?php if ($frequency == "single") echo ' selected' ?>>Singola</option>
-    <option value="monthly" <?php if ($frequency == "monthly") echo ' selected' ?>>Mensile</option>
-    <option value="annually" <?php if ($frequency == "annually") echo ' selected' ?>>Annuale</option>
-  </select>
-
-  <button class="btn btn-dark my-3" type='submit'>Aggiorna il pulsante donazione</button>
-                  </form>
-
-
-				<div id="error-message"></div>
-
-			</div> <!-- ./end col-->
-		</div> <!-- ./end row -->
-
+		<?php
+		if ($loc != null) {
+		?>
+		<input type="hidden" name="loc" value="<?php echo $loc ?>">
+		<?php
+		}
+		?>
 	</div>
-</div>
 
-    <script>
-	var quantity = <?php echo $quantity ?>;
-	var plan = "<?php echo $plan ?>";
+	<input class="form-control" type='number' name='quantity' min='10' step="0.1" value='<?php echo $quantity ?>'>
+
+	<div class="my-3 text-light"><b>Frequenza con cui vuoi donare: </b></div>
+	<select class="form-select" name="frequency">
+		<option value="single" <?php if ($frequency == "single") echo ' selected' ?>>Singola</option>
+		<option value="monthly" <?php if ($frequency == "monthly") echo ' selected' ?>>Mensile</option>
+		<option value="annually" <?php if ($frequency == "annually") echo ' selected' ?>>Annuale</option>
+	</select>
+
+	<button class="btn btn-dark my-3" type='submit'>Aggiorna il pulsante donazione</button>
+					</form>
 
 
-	var checkoutButton = document.getElementById('checkout-button-' + plan);
-	checkoutButton.addEventListener('click', function () {
-    // When the customer clicks on the button, redirect
-    // them to Checkout.
-    stripe.redirectToCheckout({
-    	items: [{<?php if($frequency == 'single') echo 'sku'; else echo 'plan'; ?>: plan, quantity: quantity}],
+					<div id="error-message"></div>
 
-    	
-    	<?php if($email != null) echo "customerEmail: '$email',"; ?>
+				</div> <!-- ./end col-->
+			</div> <!-- ./end row -->
 
-      // Note that it is not guaranteed your customers will be redirected to this
-      // URL *100%* of the time, it's possible that they could e.g. close the
-      // tab between form submission and the redirect.
-      successUrl: window.location.protocol + '//www.energiaemobilitasostenibile.org/success',
-      cancelUrl: window.location.protocol + '//www.energiaemobilitasostenibile.org/canceled',
-    })
-    .then(function (result) {
-    	if (result.error) {
-        // If `redirectToCheckout` fails due to a browser or network
-        // error, display the localized error message to your customer.
-        var displayError = document.getElementById('error-message');
-        displayError.textContent = result.error.message;
-      }
-    });
-  });
-</script>
+		</div>
+	</div>
+
+		<script>
+		var quantity = <?php echo $quantity ?>;
+		var plan = "<?php echo $plan ?>";
+
+
+		var checkoutButton = document.getElementById('checkout-button-' + plan);
+		checkoutButton.addEventListener('click', function () {
+		// When the customer clicks on the button, redirect
+		// them to Checkout.
+		stripe.redirectToCheckout({
+			items: [{<?php if($frequency == 'single') echo 'sku'; else echo 'plan'; ?>: plan, quantity: quantity}],
+
+			
+			<?php if($email != null) echo "customerEmail: '$email',"; ?>
+
+		// Note that it is not guaranteed your customers will be redirected to this
+		// URL *100%* of the time, it's possible that they could e.g. close the
+		// tab between form submission and the redirect.
+		successUrl: window.location.protocol + '//www.energiaemobilitasostenibile.org/success',
+		cancelUrl: window.location.protocol + '//www.energiaemobilitasostenibile.org/canceled',
+		})
+		.then(function (result) {
+			if (result.error) {
+			// If `redirectToCheckout` fails due to a browser or network
+			// error, display the localized error message to your customer.
+			var displayError = document.getElementById('error-message');
+			displayError.textContent = result.error.message;
+		}
+		});
+	});
+	</script>
+<?php
+	}
+?>
 </body>
