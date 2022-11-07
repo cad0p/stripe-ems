@@ -116,6 +116,9 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 ?>
 	<!-- Load Stripe.js on your website. -->
 	<script src="https://js.stripe.com/v3"></script>
+	<script>
+		var stripe = Stripe('pk_live_JGqQsMsj90FCfe9rmpGoJwmk002dwohNL9');
+	</script>
 <?php
 	if ($intent == 'membership') {
 ?>
@@ -134,30 +137,12 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 <?php
 		}
 ?>
-
-<?php
-		if ($quantity != null) {
-?>
-			<input type="hidden" name="quantity" value="<?php echo $quantity ?>">
-<?php
-		}
-?>
-
-<?php
-		if ($frequency != null) {
-?>
-			<input type="hidden" name="frequency" value="<?php echo $frequency ?>">
-<?php
-		}
-?>
 		</form>
 
 
 		<div id="error-message"></div>
 
 		<script>
-			var stripe = Stripe('pk_live_JGqQsMsj90FCfe9rmpGoJwmk002dwohNL9');
-
 			var checkoutButton = document.getElementById('checkout-button-<?php echo $memberPlan ?>');
 			checkoutButton.addEventListener('click', function () {
 			// When the customer clicks on the button, redirect
