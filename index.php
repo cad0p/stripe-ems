@@ -53,7 +53,7 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 
 				$MEMBER_PLAN_ID = array 
 	(   
-    		'nazionale'				=> 	'price_1KtwnaEw6dN3jEARjHqTkRaF',
+    	'nazionale'					=> 	'price_1KtwnaEw6dN3jEARjHqTkRaF',
 		'parma'  			    	=> 	'price_1KtwnHEw6dN3jEARPebkvbU2',
 		'milano'          			=> 	'price_1KtwmzEw6dN3jEARVvwUYiNM',
 		'milano - polimi'			=> 	'price_1KtwlkEw6dN3jEAR1w7yKRAU',
@@ -61,7 +61,7 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 		'trieste'			    	=> 	'price_1Ks0osEw6dN3jEARlaIwQJzs',
 		'palermo'			    	=> 	'price_1KtwmHEw6dN3jEARL8myfzyN',
 		'torino'          			=>	'price_1KtwlLEw6dN3jEARDP0Q8P4O',
-		'napoli'			    	=>	'price_1KsXvcEw6dN3jEARPiSyED7J'
+		'napoli'			    	=>	'price_1KsXvcEw6dN3jEARPiSyED7J',
 	);
 
 	if (array_key_exists('email', $_REQUEST)) {
@@ -80,8 +80,8 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 
 	$PLAN_ID = array 
 	(   
-    'single'   => 'sku_F3bNWSHnyfX71d'   ,
-		'monthly'  => 'plan_F3qcyeIhHvgEMb'   ,
+    	'single'   => 'sku_F3bNWSHnyfX71d',
+		'monthly'  => 'plan_F3qcyeIhHvgEMb',
 		'annually' => 'plan_F3qcK1A3GmLldP'
 	);
 
