@@ -155,10 +155,10 @@
 									<?php if ($email != null)
 										echo "customerEmail: '$email',"; ?>
 
-																		// Note that it is not guaranteed your customers will be redirected to this
-																		// URL *100%* of the time, it's possible that they could e.g. close the
-																		// tab between form submission and the redirect.
-																			successUrl: window.location.protocol + '//www.energiaemobilitasostenibile.org/success',
+																								// Note that it is not guaranteed your customers will be redirected to this
+																								// URL *100%* of the time, it's possible that they could e.g. close the
+																								// tab between form submission and the redirect.
+																									successUrl: window.location.protocol + '//www.energiaemobilitasostenibile.org/success',
 									cancelUrl: window.location.protocol + '//pay.energiaemobilitasostenibile.org/',
 								})
 									.then(function (result) {
@@ -255,10 +255,10 @@
 					<?php if ($email != null)
 						echo "customerEmail: '$email',"; ?>
 
-																																// Note that it is not guaranteed your customers will be redirected to this
-																																// URL *100%* of the time, it's possible that they could e.g. close the
-																																// tab between form submission and the redirect.
-																																successUrl: window.location.protocol + '//www.energiaemobilitasostenibile.org/success',
+																																												// Note that it is not guaranteed your customers will be redirected to this
+																																												// URL *100%* of the time, it's possible that they could e.g. close the
+																																												// tab between form submission and the redirect.
+																																												successUrl: window.location.protocol + '//www.energiaemobilitasostenibile.org/success',
 						cancelUrl: window.location.protocol + '//www.energiaemobilitasostenibile.org/canceled',
 					})
 						.then(function (result) {
@@ -293,5 +293,6 @@
 			</div>
 		</div>
 	</div>
+	<div class="container" style="height: 50px;"></div>
 
 </body>
