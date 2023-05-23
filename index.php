@@ -1,15 +1,15 @@
 <?php
-// Use HTTP Strict Transport Security to force client to use secure connections only
-$use_hsts = true;
+// // Use HTTP Strict Transport Security to force client to use secure connections only
+// $use_hsts = true;
 
-// iis sets HTTPS to 'off' for non-SSL requests
-if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
-	header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload');
-} elseif ($use_hsts) {
-	header('Location: https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], true, 301);
-	// we are in cleartext at the moment, prevent further execution and output
-	die();
-}
+// // iis sets HTTPS to 'off' for non-SSL requests
+// if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+// 	header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload');
+// } elseif ($use_hsts) {
+// 	header('Location: https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], true, 301);
+// 	// we are in cleartext at the moment, prevent further execution and output
+// 	die();
+// }
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +49,6 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 			<h1 class="text-light">Dona o Diventa Socio - EMS - Energia e Mobilita Sostenibile</h1>
 
 			<div class="row">
-
 				<div class="col-12 col-sm-4">
 
 					<?php
@@ -156,10 +155,10 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 									<?php if ($email != null)
 										echo "customerEmail: '$email',"; ?>
 
-				// Note that it is not guaranteed your customers will be redirected to this
-				// URL *100%* of the time, it's possible that they could e.g. close the
-				// tab between form submission and the redirect.
-					successUrl: window.location.protocol + '//www.energiaemobilitasostenibile.org/success',
+																		// Note that it is not guaranteed your customers will be redirected to this
+																		// URL *100%* of the time, it's possible that they could e.g. close the
+																		// tab between form submission and the redirect.
+																			successUrl: window.location.protocol + '//www.energiaemobilitasostenibile.org/success',
 									cancelUrl: window.location.protocol + '//pay.energiaemobilitasostenibile.org/',
 								})
 									.then(function (result) {
@@ -172,7 +171,7 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 									});
 							});
 						</script>
-					<?php
+						<?php
 					} else if ($intent == null) {
 						?>
 
@@ -245,19 +244,21 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 					// When the customer clicks on the button, redirect
 					// them to Checkout.
 					stripe.redirectToCheckout({
-						items: [{ <?php if ($frequency == 'single')
+						items: [{
+						<?php if ($frequency == 'single')
 							echo 'sku';
 						else
-							echo 'plan'; ?>: plan, quantity: quantity }],
+							echo 'plan'; ?>: plan, quantity: quantity
+						}],
 
 
 					<?php if ($email != null)
 						echo "customerEmail: '$email',"; ?>
 
-				// Note that it is not guaranteed your customers will be redirected to this
-				// URL *100%* of the time, it's possible that they could e.g. close the
-				// tab between form submission and the redirect.
-				successUrl: window.location.protocol + '//www.energiaemobilitasostenibile.org/success',
+																																// Note that it is not guaranteed your customers will be redirected to this
+																																// URL *100%* of the time, it's possible that they could e.g. close the
+																																// tab between form submission and the redirect.
+																																successUrl: window.location.protocol + '//www.energiaemobilitasostenibile.org/success',
 						cancelUrl: window.location.protocol + '//www.energiaemobilitasostenibile.org/canceled',
 					})
 						.then(function (result) {
@@ -273,4 +274,24 @@ if ($use_hsts && isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 		<?php
 					}
 					?>
+
+	<div class="container mt-5">
+		<div class="jumbotron p-4" style="background-color:#0b8043">
+			<h1 class="text-light">Gestisci</h1>
+
+			<div class="row">
+				<div class="col-12 col-sm-4">
+					<div class="card my-3">
+						<div class="card-body">
+							<h5 class="card-title">Pagamenti ricorrenti</h5>
+							<p class="card-text">Gestisci i tuoi pagamenti ricorrenti</p>
+							<a href="https://billing.stripe.com/p/login/7sIeXLaNfg3aaOcaEE" class="btn btn-dark">Stripe Customer
+								Portal</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </body>
